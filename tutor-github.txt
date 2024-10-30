@@ -1,0 +1,147 @@
+TUTORIAL GIT E GITHUB
+﻿
+EXPLICACAÇÂO SOBRE GIT
+GIT é uma ferramenta de controle de versionamento de arquivos.
+GIT, em algumas OS por padrão ja vem instalado como no LINUX, ou para sua instalação consulte  Git install
+
+EXPLICACAÇÂO SOBRE GIT
+GITHUB é uma plataforma (web) de hospedagem de arquivos, código-fonte e colaboração, baseada no sistema de controle de versões Git, onde podemos criar repositórios. 
+
+
+GIT FILES CONFIGURATION
+Git utiliza vários arquivos de configuração para gerenciar suas configurações e preferências.
+Os principais são:
+
+1) .git/config: Este é o arquivo de configuração local de um repositório. Ele armazena configurações específicas para aquele repositório, como remotos, branches e opções específicas do projeto.
+2) ~/.gitconfig (ou ~/.config/git/config): Este é o arquivo de configuração global do usuário. As configurações aqui se aplicam a todos os repositórios do usuário no sistema. Pode incluir informações como nome de usuário e e-mail, preferências de merge, entre outras.
+3) /etc/gitconfig: Este é o arquivo de configuração do sistema. As configurações aqui se aplicam a todos os usuários e repositórios no sistema. É usado para definir configurações que são comuns a todos os usuários.
+
+Git também permite que você especifique configurações temporárias diretamente na linha de comando usando as opções:
+git config --global
+git config --system
+git config --local	
+
+
+GIT INITIAL CONFIGUTATION (terminal)
+-> definição do user para GIT
+git config --global user.name “nameUserGIT” 
+
+-> definição de email do user GIT
+git config --global user.email “emailUserGIT”
+
+-> definição do editor default para GIT (opcional)
+git config --global core.editor subl (sublime) 
+
+-> Conferindo configurações
+git config user.name
+git config user.email
+git config core.editor
+
+git config –list (configurações geral GIT GLobal)
+
+
+GIT REPOSITORY INITIAL CONFIGURATION (local)
+Explicação e entendimento do Ciclo de vida GIT (status dos arquivos no repo) em 4 stage
+
+untracked -> significa arquivos criado no diretório ( mais o GIT ainda não reconhece o arquivo no repo)
+unmodified -> aquivo reconhecido pelo GIT repo, porem não modificado.
+modified -> arquivo reconhecido no GIT repo, indicando alguma modificação.
+staged -> arquivo reconhecido no GIT repo e vercionado (commit) 
+
+
+Inicialização no diretory:
+-> initial repo GIT
+git init
+
+-> verificação do status do GIT (files)
+git status
+
+-> adicionar arquivo no repo GIT
+git add file
+
+-> inserindo arquivo no STAGED (area de vercionamento)
+git commit -m "comentario" (para arquivos novos)
+git commit -am "comentario" (para arquivos ja existente)
+
+Visualizando log
+-> visualização de log (commit)
+git log 
+
+-> visualização de log com especificação dos BRANCH
+git log –decorate
+
+-> visualiza log do author especificados 
+git log –author=”name_do_author”
+
+-> visualiza log em uma versão mais curta de todos os authores e seus comites ordenados.
+git shortlog
+
+-> visualiza um resumo de log dos authores e quantidade de commit realizados.
+git shortlog -sn
+
+-> visualiza em modo graficos dos log efetuados pelos authores
+git log --graph 
+
+-> visualiza log modo detalhado os commit referente ao rash informado.
+git log show “numero_rash” 
+
+
+Visualizando log de alteração feita antes de commitar
+-> visualiza alterações feitas antes de ser adicionado para area de transferencia (modified)
+git diff 
+
+-> visualiza nome dos arquivo que houveram alterações.
+git diff --name-only 
+
+-> deletando/remove ultimo estado do arquivo (até ficar em seu estado inicial)
+git checkout file 
+
+-> remove arquivo do Staged
+git reset HEAD file
+
+
+Remove estado file (cuidado)
+git reset --soft, --mix, --hard “numero_rash”
+ 
+--soft  remove commit, deixando o arquivo pronto para ser comitado novamente com a (modified) anterior a ultima modified
+--mix  remove o comite, deixando o arquivo no estado de (modified)
+--hard remove o commite, deixando o arquivo em seu estado inicial.
+
+Obs:. git reset hard altera o historico fdo git, sendo necessário atualizar o historico do git com 'FORCE'
+
+
+REPOSITORY REMOTE GITHUB
+
+- criar repository no GITHUB
+- criar chaves SSH local GIT e copiar a chave PUB para GITHUB -  help ssh_GitHub
+
+Create a new repository on the command line
+
+echo "#" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:...
+git push -u origin main
+
+Or push an existing repository from the command line
+
+git remote add origin git@github.com:...
+git branch -M main
+git push -u origin main
+
+
+Comando para manuipulação 
+-> vizualiza o nome do repo remote existent
+git remote 
+
+-> visualiza detalahamente o repo remoto existent
+git remote -v 
+
+-> envia arquivo para repo remoto
+git push -u origin main 
+
+-> clonar repo
+git clone end_repo_remoto name_para_repo_local
+
