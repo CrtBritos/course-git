@@ -142,6 +142,127 @@ git remote -v
 -> envia arquivo para repo remoto
 git push -u origin main 
 
--> clonar repo
+-> clonar repo (fazer uma copia perfeita do repo referencioado)
 git clone end_repo_remoto name_para_repo_local
 
+-> fork repo (copia o repo referenciado, podendo altera-lo e o reenvia-lo devolta com as alterações por (request))
+button direto no repo
+
+
+RAMIFICAÇÂO BRANCH
+Um "Branch" no Git é uma versão paralela do repositório. Ele permite que você trabalhe em diferentes funcionalidades ou correções de bugs 
+sem afetar a "Branch" principal (geralmente chamada de "main" ou "master").
+Resumindo, "Branch" é um ponteiro movel que leva o COMMIT.
+
+Vantagem para se ter um "Branch"
+- modificar sem alterar o local(Branch) principal(master)
+- facilmente "desligavel"
+- múltiplas pessoas trabalhando
+- evita conflitos
+
+-> criar um Branch
+git branch "name_branch"
+
+-> criando um Branch, mudando imediatamente para o Branch criado
+git checkout -b "name_branch"
+
+-> mudar de Branch
+git checkout "name_branch"
+or
+git switch "name_branch"
+
+-> verificação de Branch existentes (* informa o Branch atual logado)
+git branch
+
+-> deletar/remove Branch (local)
+git branch -D "name_branch"
+
+
+UNINDO BRANCHES (merge/rebase)
+
+Vantagem
+merge - uma operação não destrutiva
+rebase - evita commits extra
+rebase - histórico linear
+
+Desvantagem
+merge - cria um novo commit para união do Branch
+rebase - perde a ordem cronologicas
+
+
+
+EXTRAS
+""""""
+GIT IGNORE (arquivo configurável para padrão não utilizável)
+-> criação de file .gitignore  
+mkdir .gitignore
+
+gitignore documentation => https://git-scm.com/docs/gitignore
+gitignore template => https://github.com/github/gitignore
+
+--------------
+
+GIT STASH (guarda informação que não foram commited, podendo recupera-las posteriormente)
+-> guardando modificações não commited
+git stash 
+
+-> recuperando modificação não commited para commited
+git stash apply
+
+-> listando alterações guardadas no "STASH"
+git stash list
+
+-> limpando alterações guardadas no "STASH"
+git stash clear
+
+---------------
+
+ALIAS (atalhos command)
+-> criando 'alias' 
+git config --global alias.?  command
+git config --global alias.s status
+
+git s => executa o command git status
+
+---------------
+
+TAGS (release/ versões) - repo remote (aba release)
+-> criando tags GITHUB
+git tag -a 1.0.0 -m "annotation"
+
+-> ativação tags GITHUB repo remote
+git push origin master --tags
+
+-> visualização de tags geradas
+git tag
+
+-> deletar/remover tags (local)
+git tag -D "name_tag"
+
+---------------
+
+REVERT GIT
+git revert é utilizado para desfazer as alterações de um commit específico de maneira segura e controlada. 
+Aqui estão alguns dos principais usos e benefícios:
+
+1)Desfazer alterações no histórico: Ao contrário do git reset, que pode remover commits, o git revert cria um novo commit que desfaz as alterações realizadas por um commit anterior. Isso é útil para manter um histórico claro.
+
+2) Colaboração em equipe: Quando você trabalha em equipe, o git revert é preferível porque não reescreve o histórico compartilhado. Assim, todos os membros da equipe podem ver quais alterações foram revertidas sem confusões.
+
+3) Identificar erros: Se um erro é introduzido em um commit, você pode usar o git revert para corrigi-lo facilmente. Isso permite que você continue desenvolvendo sem perder o contexto do trabalho anterior.
+
+4) Testar alterações: Se você não tem certeza se quer manter certas alterações, pode reverter um commit e, em seguida, decidir se deseja reaplicá-las mais tarde.
+
+"git revert" é uma ferramenta valiosa para manter a integridade do histórico de commits enquanto desfaz alterações de maneira controlada.
+
+-> revertendo um commit
+git revert "number_rash"
+
+---------------
+
+REMOVER / DELETAR (tag, branch)
+
+git tag -D 'nameTag'  (local)
+git branch -D 'nameBranch' (local)
+git push origin :nameTag (remote)
+git push origin :nameBranch (remote)
